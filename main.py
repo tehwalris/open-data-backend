@@ -82,6 +82,11 @@ questions = [
     'text': "How does air pollution in Zurich change throughout the year?",
     'function': air_quality.answer_over_year,
   },
+  {
+    'id': 14,
+    'text': "How does air pollution in Zurich change throughout the day?",
+    'function': air_quality.answer_over_day,
+  },
 ]
 
 _questions = questions

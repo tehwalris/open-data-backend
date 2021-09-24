@@ -9,7 +9,7 @@ from .path import get_path_from_root
 
 def get_all_air_quality_csv_paths():
   # TODO
-  return glob.glob(str(get_path_from_root('data/air_quality/202*.csv')))
+  return glob.glob(str(get_path_from_root('data/air_quality/*.csv')))
 
 def load_single_air_quality_csv(path):
   df = pd.read_csv(
@@ -51,6 +51,11 @@ def get_day_of_year_air_quality():
   df.index.rename('day_of_year', level=0, inplace=True)
   return df
 
+def get_hour_air_quality():
+  df = pd.read_pickle(get_path_from_root('data/air_quality/pre/hour.pickle'))
+  df.index.rename('hour', level=0, inplace=True)
+  return df
+
 def make_answer_pollutant_over_time(pollutant):
   def answer_pollutant_over_time():
     df = get_monthly_air_quality()
@@ -76,6 +81,16 @@ def answer_over_year():
   df = get_day_of_year_air_quality()
   df = df.reset_index()
   df = df.groupby(['day_of_year', 'pollutant']).mean()['value'].unstack('pollutant')
+  df.columns = df.columns.astype('string')
+  df = df.sort_index()
+  df = df / df.max(axis=0)
+  df = df.reset_index()
+  return response_from_df(df)
+
+def answer_over_day():
+  df = get_hour_air_quality()
+  df = df.reset_index()
+  df = df.groupby(['hour', 'pollutant']).mean()['value'].unstack('pollutant')
   df.columns = df.columns.astype('string')
   df = df.sort_index()
   df = df / df.max(axis=0)
