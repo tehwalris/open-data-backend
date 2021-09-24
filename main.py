@@ -51,6 +51,11 @@ questions = [
     'function': air_quality.make_answer_pollutant_over_time('PM2.5'),
   },
   {
+    'id': 11,
+    'text': "How much sulfur dioxide is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('SO2'),
+  },
+  {
     'id': 2,
     'text': "How much ozone is there in Zurich?",
     'function': air_quality.make_answer_pollutant_over_time('O3'),
