@@ -8,7 +8,8 @@ from .memoize import memoize
 from .path import get_path_from_root
 
 def get_all_air_quality_csv_paths():
-  return glob.glob(str(get_path_from_root('data/air_quality/*.csv')))
+  # TODO
+  return glob.glob(str(get_path_from_root('data/air_quality/202*.csv')))
 
 def load_single_air_quality_csv(path):
   df = pd.read_csv(
@@ -45,6 +46,11 @@ def get_monthly_air_quality():
   df.index.rename('date', level=0, inplace=True)
   return df
 
+def get_day_of_year_air_quality():
+  df = pd.read_pickle(get_path_from_root('data/air_quality/pre/day_of_year.pickle'))
+  df.index.rename('day_of_year', level=0, inplace=True)
+  return df
+
 def make_answer_pollutant_over_time(pollutant):
   def answer_pollutant_over_time():
     df = get_monthly_air_quality()
@@ -64,6 +70,16 @@ def answer_combined_over_time():
   df = df.mean(axis=1)
   df = df.reset_index()
   df = df.rename(columns={ 'date': 'x', 0: 'y' })
+  return response_from_df(df)
+
+def answer_over_year():
+  df = get_day_of_year_air_quality()
+  df = df.reset_index()
+  df = df.groupby(['day_of_year', 'pollutant']).mean()['value'].unstack('pollutant')
+  df.columns = df.columns.astype('string')
+  df = df.sort_index()
+  df = df / df.max(axis=0)
+  df = df.reset_index()
   return response_from_df(df)
 
 def answer_pollutant_table():

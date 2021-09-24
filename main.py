@@ -62,8 +62,11 @@ questions = [
   },
 
   {
-    'id': 3,
-    'text': "Is air pollution in Zurich getting worse?",
+    'id': [3, 12],
+    'text': [
+      "Is air pollution in Zurich getting worse?",
+      "How did air pollution in Zurich change over time?",
+    ],
     'function': air_quality.answer_combined_over_time,
   },
   {
@@ -73,7 +76,12 @@ questions = [
       'What contributes to air pollution?',
     ],
     'function': air_quality.answer_pollutant_table,
-  }
+  },
+  {
+    'id': 13,
+    'text': "How does air pollution in Zurich change throughout the year?",
+    'function': air_quality.answer_over_year,
+  },
 ]
 
 _questions = questions
