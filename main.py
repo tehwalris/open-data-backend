@@ -35,7 +35,7 @@ questions = [
   {
     'id': 3,
     'text': "Is air pollution in Zurich getting worse?",
-    'function': air_quality.generic_answer_function,
+    'function': air_quality.answer_combined_over_time,
   },
   {
     'id': [4, 5],
@@ -43,7 +43,7 @@ questions = [
       'How much pollution is there in Zurich?',
       'What contributes to air pollution?',
   ],
-  'function': None,
+  'function': air_quality.answer_pollutant_table,
   }
 ]
 

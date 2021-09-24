@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import glob
 from tqdm import tqdm
 
@@ -54,7 +55,7 @@ def make_specific_answer_function(location, pollutant):
 
   return answer_function
 
-def generic_answer_function():
+def answer_combined_over_time():
   df = get_monthly_air_quality()
   df = df.reset_index().rename(columns={'level_0': 'date'})
   df = df.groupby(['date', 'pollutant']).mean()['value'].unstack('pollutant')
@@ -64,3 +65,13 @@ def generic_answer_function():
   df = df.reset_index()
   df = df.rename(columns={ 'date': 'x', 0: 'y' })
   return response_from_df(df)
+
+def answer_pollutant_table():
+  df = get_monthly_air_quality()
+  df = df.loc[pd.IndexSlice[df.index.get_level_values('date').max(), :, :]]
+  df = df.reset_index()
+  df = df.groupby(['date', 'pollutant']).mean()['value'].unstack('pollutant')
+  return {
+    'date': df.index.values[0],
+    'values': df.iloc[0].to_dict(),
+  }
