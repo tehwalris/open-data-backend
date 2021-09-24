@@ -24,13 +24,13 @@ app.add_middleware(
 questions = [
   {
     'id': 1,
-    'text': "How much carbon monoxide is there at Stampfenbachstrasse?",
-    'function': air_quality.make_specific_answer_function('Zch_Stampfenbachstrasse', 'CO'),
+    'text': "How much carbon monoxide is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('CO'),
   },
   {
     'id': 2,
-    'text': "How much ozone is there at Stampfenbachstrasse?",
-    'function': air_quality.make_specific_answer_function('Zch_Stampfenbachstrasse', 'O3'),
+    'text': "How much ozone is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('O3'),
   },
   {
     'id': 3,

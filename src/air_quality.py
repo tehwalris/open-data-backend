@@ -45,19 +45,19 @@ def get_monthly_air_quality():
   df.index.rename('date', level=0, inplace=True)
   return df
 
-def make_specific_answer_function(location, pollutant):
-  def answer_function():
+def make_answer_pollutant_over_time(pollutant):
+  def answer_pollutant_over_time():
     df = get_monthly_air_quality()
-    df = df.loc[pd.IndexSlice[:, location, pollutant]]
-    df = df.reset_index()
+    df = df.loc[pd.IndexSlice[:, :, pollutant]]
+    df = df.reset_index().groupby('date').mean().reset_index()
     df = df.rename(columns={ 'date': 'x', 'value': 'y' })
     return response_from_df(df)
 
-  return answer_function
+  return answer_pollutant_over_time
 
 def answer_combined_over_time():
   df = get_monthly_air_quality()
-  df = df.reset_index().rename(columns={'level_0': 'date'})
+  df = df.reset_index()
   df = df.groupby(['date', 'pollutant']).mean()['value'].unstack('pollutant')
   df = df.sort_index()
   df = df / df.iloc[0]
