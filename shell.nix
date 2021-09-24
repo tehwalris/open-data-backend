@@ -9,6 +9,8 @@ let
     scikitlearn
     jupyterlab
     seaborn
+    fastapi
+    uvicorn
   ];
 in 
   mkShell {
