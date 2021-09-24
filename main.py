@@ -34,10 +34,9 @@ questions = [
   },
   {
     'id': 3,
-    'text': "Did air quality get worse?",
+    'text': "Is air pollution in Zurich getting worse?",
     'function': air_quality.generic_answer_function,
   },
-  
 ]
 
 @app.get("/questions")
