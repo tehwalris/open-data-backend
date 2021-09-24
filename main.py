@@ -37,7 +37,26 @@ questions = [
     'text': "Is air pollution in Zurich getting worse?",
     'function': air_quality.generic_answer_function,
   },
+  {
+    'id': [4, 5],
+    'text': [
+      'How much pollution is there in Zurich?',
+      'What contributes to air pollution?',
+  ],
+  'function': None,
+  }
 ]
+
+_questions = questions
+questions = []
+for group in _questions:
+  if isinstance(group['id'], list):
+    assert isinstance(group['text'], list)
+    assert len(group['id']) == len(group['text'])
+    for i in range(len(group['id'])):
+      questions.append({ **group, 'id': group['id'][i], 'text': group['text'][i] })
+  else:
+    questions.append(group)
 
 @app.get("/questions")
 async def get_questions():
