@@ -40,7 +40,9 @@ def _load_air_quality(group_by):
   return day_df
 
 def get_monthly_air_quality():
-  return pd.read_pickle(get_path_from_root('data/air_quality/pre/monthly.pickle'))
+  df = pd.read_pickle(get_path_from_root('data/air_quality/pre/monthly.pickle'))
+  df.index.rename('date', level=0, inplace=True)
+  return df
 
 def make_specific_answer_function(location, pollutant):
   def answer_function():
