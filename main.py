@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-import air_quality
+from src import air_quality
 
 
 
@@ -25,13 +25,19 @@ questions = [
   {
     'id': 1,
     'text': "How much carbon monoxide is there at Stampfenbachstrasse?",
-    'function': air_quality.make_answer_function('Zch_Stampfenbachstrasse', 'CO'),
+    'function': air_quality.make_specific_answer_function('Zch_Stampfenbachstrasse', 'CO'),
   },
   {
     'id': 2,
     'text': "How much ozone is there at Stampfenbachstrasse?",
-    'function': air_quality.make_answer_function('Zch_Stampfenbachstrasse', 'O3'),
+    'function': air_quality.make_specific_answer_function('Zch_Stampfenbachstrasse', 'O3'),
   },
+  {
+    'id': 3,
+    'text': "Did air quality get worse?",
+    'function': air_quality.generic_answer_function,
+  },
+  
 ]
 
 @app.get("/questions")
