@@ -28,10 +28,34 @@ questions = [
     'function': air_quality.make_answer_pollutant_over_time('CO'),
   },
   {
+    'id': 6,
+    'text': "How much nitrogen monoxide is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('NO'),
+  },
+  {
+    'id': 7,
+    'text': "How much nitrogen dioxide is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('NO2'),
+  },
+  {
+    'id': [8, 9],
+    'text': [
+      "How much particulate matter is there in Zurich?",
+      "How much PM10 is there in Zurich?",
+    ],
+    'function': air_quality.make_answer_pollutant_over_time('PM10'),
+  },
+  {
+    'id': 10,
+    'text': "How much PM2.5 is there in Zurich?",
+    'function': air_quality.make_answer_pollutant_over_time('PM2.5'),
+  },
+  {
     'id': 2,
     'text': "How much ozone is there in Zurich?",
     'function': air_quality.make_answer_pollutant_over_time('O3'),
   },
+
   {
     'id': 3,
     'text': "Is air pollution in Zurich getting worse?",
@@ -42,16 +66,16 @@ questions = [
     'text': [
       'How much pollution is there in Zurich?',
       'What contributes to air pollution?',
-  ],
-  'function': air_quality.answer_pollutant_table,
+    ],
+    'function': air_quality.answer_pollutant_table,
   }
 ]
 
 _questions = questions
 questions = []
 for group in _questions:
+  assert isinstance(group['id'], list) == isinstance(group['text'], list)
   if isinstance(group['id'], list):
-    assert isinstance(group['text'], list)
     assert len(group['id']) == len(group['text'])
     for i in range(len(group['id'])):
       questions.append({ **group, 'id': group['id'][i], 'text': group['text'][i] })
