@@ -1,5 +1,6 @@
 import pandas as pd
 import glob
+from fastapi import Response
 
 def get_all_air_quality_csv_paths():
   return glob.glob('../data/air_quality/*.csv')
@@ -32,3 +33,16 @@ def load_air_quality(group_by):
     temp = temp.groupby([group_by(temp.index), 'location', 'pollutant']).mean()
     day_df.append(temp)
   return pd.concat(day_df)
+
+def make_answer_function(location, pollutant):
+  def answer_function():
+    df = load_air_quality(lambda index: pd.Grouper(freq='M'))
+    df = df.loc[pd.IndexSlice[:, location, pollutant]]
+    df = df.reset_index()
+    df = df.rename({ 'date': 'x', 'value': 'y' })
+    return Response(
+      content=df.to_json(orient='records', date_format='iso'),
+      media_type="application/json",
+    )
+
+  return answer_function
