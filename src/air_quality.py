@@ -40,7 +40,7 @@ def make_specific_answer_function(location, pollutant):
     df = load_air_quality(lambda index: pd.Grouper(freq='M'))
     df = df.loc[pd.IndexSlice[:, location, pollutant]]
     df = df.reset_index()
-    df = df.rename({ 'date': 'x', 'value': 'y' })
+    df = df.rename(columns={ 'date': 'x', 'value': 'y' })
     return response_from_df(df)
 
   return answer_function
@@ -53,5 +53,5 @@ def generic_answer_function():
   df = df / df.iloc[0]
   df = df.mean(axis=1)
   df = df.reset_index()
-  df = df.rename({ 'date': 'x', 'value': 'y' })
+  df = df.rename(columns={ 'date': 'x', 0: 'y' })
   return response_from_df(df)
