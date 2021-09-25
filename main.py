@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 from src import air_quality
 from src import random_facts
+from src import energy
 
 
 
@@ -291,6 +292,35 @@ questions = [
     'text': "How many Mobility statitions are there in Zurich?",
     'function': random_facts.make_answer_fact('Mobility Standorte', 'Mobility stations'),
   },
+  # Energy data
+   {
+    'id': [58,59],
+    'text': [
+      "How much electricity does Zurich use?",
+      "How did electricity use change during the pandemic?",
+    ],
+    'function': energy.power_weekly,
+  },
+  {
+    'id': [60],
+    'text': [
+      "How does energy use change over the course of a day?"
+    ],
+    'function': energy.power_over_a_day,
+  },
+    {
+    'id': [61],
+    'text': [
+      "How does energy use change over the course of a week?"
+    ],
+    'function': energy.power_over_a_week,
+  } , {
+    'id': [62],
+    'text': [
+      "How does energy use change over the course of a year?"
+    ],
+    'function': energy.power_over_a_year,
+  }
 ]
 
 _questions = questions
