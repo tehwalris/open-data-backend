@@ -6,6 +6,7 @@ let
     pandas
     matplotlib
     tqdm
+    scipy
     scikitlearn
     jupyterlab
     seaborn
