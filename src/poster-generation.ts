@@ -17,7 +17,7 @@ const doStuff = async () => {
 	});
 	for (let i = 1; i <= 75; i++) {
 		const page = await browser.newPage();
-		await page.goto("http://localhost:3000/ask/" + i, {
+		await page.goto("http://localhost:3000/poster/" + i, {
 			waitUntil: "networkidle2",
 		});
 		const pdf = await page.screenshot({ path: `${dir}/screenshot${i}.png` });
