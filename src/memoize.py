@@ -3,6 +3,7 @@ def memoize(f):
   has_value = False
 
   def memoized():
+    nonlocal value, has_value 
     if has_value:
       return value
     value = f()

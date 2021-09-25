@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from src import air_quality
+from src import random_facts
 
 
 
@@ -86,6 +87,16 @@ questions = [
     'id': 14,
     'text': "How does air pollution in Zurich change throughout the day?",
     'function': air_quality.answer_over_day,
+  },
+
+  {
+    'id': [15, 16, 17],
+    'text': [
+      "How tall is the tallest building in Zurich?",
+      "How many floors does the biggest building in Zurich have?",
+      "Where is the tallest building in Zurich?",
+    ],
+    'function': random_facts.make_answer_fact('Anzahl Stockwerke des höchsten Gebäudes (Adresse'),
   },
 ]
 
