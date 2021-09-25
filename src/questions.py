@@ -303,12 +303,57 @@ questions = [
     'function': energy.power_over_a_year,
   }, 
   {
-    'id': [63],
+    'id': [63, 64, 65],
     'text': [
-      "Dog Gender"
+      "What is the dog gender distribution?",
+      "How many male dogs are there?",
+      "How many female dogs are there?"
     ],
     'function': dogs.dog_gender,
-  }
+  },
+  {
+    'id': [66, 67, 68],
+    'text': [
+      "What is the dog owner gender distribution?",
+      "How many male dog owners are there?",
+      "How many female dog owners are there?"
+    ],
+    'function': dogs.owner_gender,
+  }, {
+    'id': [69],
+    'text': [
+      "What dog breed is the most common?"
+    ],
+    'function': dogs.dog_breed,
+  }, {
+    'id': [70],
+    'text': [
+      "How many dogs are there in Zurich?"
+    ],
+    'function': dogs.dogs_by_kreis,
+  },
+  {
+    'id': [71,72],
+    'text': [
+      "What age are dog owners in Zurich?",
+      "How old are dog owners in Zurich?"
+    ],
+    'function': dogs.owner_age,
+  },
+   {
+    'id': [73],
+    'text': [
+      "What is the highest number of dogs a person has in Zurich?"
+    ],
+    'function': dogs.max_dog_count,
+  },{
+    'id': [74,75],
+    'text': [
+      "When were dogs born in Zurich?",
+      "What age are dogs in Zurich?"
+    ],
+    'function': dogs.dog_age,
+  },
 ]
 
 _questions = questions
