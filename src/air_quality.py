@@ -6,6 +6,7 @@ from tqdm import tqdm
 from .response import response_from_df
 from .memoize import memoize
 from .path import get_path_from_root
+from .smooth import smooth
 
 def get_all_air_quality_csv_paths():
   # TODO
@@ -60,8 +61,9 @@ def make_answer_pollutant_over_time(pollutant):
   def answer_pollutant_over_time():
     df = get_monthly_air_quality()
     df = df.loc[pd.IndexSlice[:, :, pollutant]]
-    df = df.reset_index().groupby('date').mean().reset_index()
+    df = df.groupby(pd.Grouper(freq='M', level='date')).mean().reset_index()
     df = df.rename(columns={ 'date': 'x', 'value': 'y' })
+    df = smooth(df, 'y', window_size=12)
     return response_from_df(df)
 
   return answer_pollutant_over_time
@@ -75,6 +77,7 @@ def answer_combined_over_time():
   df = df.mean(axis=1)
   df = df.reset_index()
   df = df.rename(columns={ 'date': 'x', 0: 'y' })
+  df = smooth(df, 'y', window_size=12)
   return response_from_df(df)
 
 def answer_over_year():
