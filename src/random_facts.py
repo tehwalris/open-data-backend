@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
+import json
 
 from .path import get_path_from_root
 from .memoize import memoize
-from .response import response_from_df
+from .response import json_from_df
 
 def _load_data():
   df = pd.read_csv(
@@ -25,7 +26,7 @@ def _load_data():
 
 load_data = memoize(_load_data)
 
-def make_answer_fact(topic_slug):
+def make_answer_fact(topic_slug, unit):
   def answer_fact():
     df = load_data()
     df = df[df['topic_slug'] == topic_slug]
@@ -33,6 +34,9 @@ def make_answer_fact(topic_slug):
       raise ValueError('unknown topic')
     df = df[df['placeId'] <= 12]
     df = df[['placeId', 'placeName', 'value']]
-    return response_from_df(df)
+    return {
+      "unit": unit,
+      "values": json.loads(json_from_df(df)),
+    }
 
   return answer_fact

@@ -96,7 +96,15 @@ questions = [
       "How many floors does the biggest building in Zurich have?",
       "Where is the tallest building in Zurich?",
     ],
-    'function': random_facts.make_answer_fact('Anzahl Stockwerke des höchsten Gebäudes (Adresse'),
+    'function': random_facts.make_answer_fact('Anzahl Stockwerke des höchsten Gebäudes (Adresse', 'floors'),
+  },
+  {
+    'id': [18, 19],
+    'text': [
+      "How big are the districts of Zurich?",
+      "What's the area of Zurich?",
+    ],
+    'function': random_facts.make_answer_fact('Fläche in Quadratkilometer', 'km²'),
   },
 ]
 
