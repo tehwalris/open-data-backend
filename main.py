@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from src import air_quality
 from src import random_facts
 from src import energy
+from src import dogs
 
 
 
@@ -308,18 +309,26 @@ questions = [
     ],
     'function': energy.power_over_a_day,
   },
-    {
+  {
     'id': [61],
     'text': [
       "How does energy use change over the course of a week?"
     ],
     'function': energy.power_over_a_week,
-  } , {
+  }, 
+  {
     'id': [62],
     'text': [
       "How does energy use change over the course of a year?"
     ],
     'function': energy.power_over_a_year,
+  }, 
+  {
+    'id': [63],
+    'text': [
+      "Dog Gender"
+    ],
+    'function': dogs.dog_gender,
   }
 ]
 

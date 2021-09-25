@@ -10,3 +10,6 @@ wget "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005/downlo
 
 mkdir -p data/energy
 wget "https://data.stadt-zuerich.ch/dataset/ewz_bruttolastgang_stadt_zuerich/download/2020_ewz_bruttolastgang.csv" -O "data/energy/data.csv"
+
+mkdir -p data/dogs
+wget "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand/download/20210301_hundehalter.csv" -O "data/dogs/data.csv"
