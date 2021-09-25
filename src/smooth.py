@@ -2,7 +2,7 @@ import numpy as np
 
 def smooth(df, dim, window_size):
   def stuff(s, q):
-    s = s.rolling(window_size).quantile(q)
+    s = s.rolling(window_size, center=True).quantile(q)
     s[s.diff() == 0] = np.nan
     s = s.interpolate('cubic')
     return s
