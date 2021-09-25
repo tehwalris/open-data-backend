@@ -1,10 +1,29 @@
 import puppeteer from "puppeteer";
-const browser = await puppeteer.launch();
+var fs = require("fs");
 
-const page = await browser.newPage();
-await page.goto("https://example.com");
+var dir = "posters";
 
-console.log(await page.content());
-await page.screenshot({ path: "screenshot.png" });
+if (!fs.existsSync(dir)) {
+	fs.mkdirSync(dir);
+}
 
-await browser.close();
+const doStuff = async () => {
+	const iExistBecausePhilippeWantsIt = 5;
+	const browser = await puppeteer.launch({
+		defaultViewport: {
+			width: 210 * iExistBecausePhilippeWantsIt,
+			height: 297 * iExistBecausePhilippeWantsIt,
+		},
+	});
+	for (let i = 1; i <= 75; i++) {
+		const page = await browser.newPage();
+		await page.goto("http://localhost:3000/ask/" + i, {
+			waitUntil: "networkidle2",
+		});
+		const pdf = await page.screenshot({ path: `${dir}/screenshot${i}.png` });
+		console.log("done", i);
+	}
+	await browser.close();
+};
+
+doStuff();
