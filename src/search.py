@@ -61,6 +61,9 @@ def make_rank_question(query, embeddings_dict):
   query_word_vecs = rough_vecs_from_scentence(query, embeddings_dict)
   
   def rank_question(question_word_vecs):
+      if len(query_word_vecs) == 0 or len(question_word_vecs) == 0:
+        return terrible_rank
+
       distances_per_query_word = np.array([
           min(
               spatial.distance.euclidean(query_word_vec, question_word_vec)
@@ -68,17 +71,14 @@ def make_rank_question(query, embeddings_dict):
           )
           for query_word_vec in query_word_vecs
       ])
-      rank = np.sum(distances_per_query_word ** 2)
-      if rank == 0:
-        return terrible_rank
-      return np.nan_to_num(rank, terrible_rank)
+      return np.mean(distances_per_query_word ** 2)
   
   return rank_question
 
 def search_questions(query, question_vecs, embeddings_dict):
   rank_question = make_rank_question(query, embeddings_dict)
   temp = [
-      { 'text': q['text'], 'rank': rank_question(q_vec) }
+      { 'id': q['id'], 'rank': rank_question(q_vec) }
       for q, q_vec in zip(questions, question_vecs)
   ]
   temp.sort(key=lambda e: e['rank'])
