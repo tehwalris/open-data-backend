@@ -39,14 +39,14 @@ def dog_breed():
   temp = df["RASSE1"].value_counts().sort_values().to_frame()
   size = temp.size
   others = (df["RASSE1"].value_counts().tail(size-10).sum())
-  print(size,others)
   temp = df["RASSE1"].value_counts().head(10)
 
   temp["Andere"] = others
   temp = temp.to_frame()
-  print(temp)
   temp = temp.reset_index()
   temp.columns =["x","y"]
+
+  temp = temp.iloc[::-1]
 
   return response_from_df(temp)
 
