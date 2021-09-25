@@ -37,7 +37,7 @@ def _load_question_vecs():
 
 load_question_vecs = memoize(_load_question_vecs)
 
-stop_words = 'a the does did how much is in zurich use there'
+stop_words = 'a the does did how much is in zurich use there what whats where'
 stop_words = set(stop_words.split(' '))
 
 def rough_tokenize(s):
