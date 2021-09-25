@@ -35,21 +35,21 @@ def power_weekly():
 
   df = df.groupby(pd.Grouper(freq="w")).mean()
   df = df.reset_index()
-  df = df.rename(columns={ 'date': 'x', "energy": 'y' })
+  df = df.rename(columns={ 'index': 'x', "energy": 'y' })
   return response_from_df(df)
 
 def power_over_a_day():
   df = load_data()
   df = df.groupby(lambda x: x.hour).mean()
   df = df.reset_index()
-  df = df.rename(columns={ 'date': 'x', "energy": 'y' })
+  df = df.rename(columns={ 'index': 'x', "energy": 'y' })
   return response_from_df(df)
 
 def power_over_a_week():
   df = load_data()
   df = df.groupby(lambda x: x.weekday()).mean()
   df = df.reset_index()
-  df = df.rename(columns={ 'date': 'x', "energy": 'y' })
+  df = df.rename(columns={ 'index': 'x', "energy": 'y' })
   return response_from_df(df)
 
 def power_over_a_year():
