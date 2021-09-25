@@ -35,7 +35,7 @@ def power_weekly():
 
   df = df.groupby(pd.Grouper(freq="w")).mean()
   df = df.reset_index()
-  df = df.rename(columns={ 'index': 'x', "energy": 'y' })
+  df = df.rename(columns={ 'date': 'x', "energy": 'y' })
   return response_from_df(df)
 
 def power_over_a_day():
