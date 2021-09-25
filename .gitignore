@@ -119,3 +119,5 @@ venv.bak/
 
 
 divetree-core/package.json
+
+/node_modules
