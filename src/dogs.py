@@ -46,6 +46,8 @@ def dog_breed():
   temp = temp.reset_index()
   temp.columns =["x","y"]
 
+  temp = temp.iloc[::-1]
+
   return response_from_df(temp)
 
 def dogs_by_kreis():
