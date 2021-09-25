@@ -1,6 +1,6 @@
 def smooth(df, dim, window_size):
   df = df.copy()
-  df[dim] = df[dim].rolling(window_size).mean()
-  df[f'{dim}_high'] = df[dim].rolling(window_size).quantile(0.9)
-  df[f'{dim}_low'] = df[dim].rolling(window_size).quantile(0.1)
+  df[f'{dim}_high'] = df[dim].rolling(window_size, center=True).max()
+  df[f'{dim}_low'] = df[dim].rolling(window_size, center=True).min()
+  df[dim] = df[dim].rolling(window_size, center=True).mean()
   return df
