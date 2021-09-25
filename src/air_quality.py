@@ -104,10 +104,11 @@ def answer_over_day():
 
 def answer_pollutant_table():
   df = get_monthly_air_quality()
-  df = df.loc[pd.IndexSlice[df.index.get_level_values('date').max(), :, :]]
   df = df.reset_index()
-  df = df.groupby(['date', 'pollutant']).mean()['value'].unstack('pollutant')
+  date = df['date'].max()
+  df = df[df['date'] == date]
+  df = df.groupby('pollutant').mean()
   return {
-    'date': df.index.values[0],
-    'values': df.iloc[0].to_dict(),
+    'date': date,
+    'values': df.to_dict()['value'],
   }
