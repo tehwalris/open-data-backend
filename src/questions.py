@@ -165,7 +165,7 @@ questions = [
     'function': random_facts.make_answer_fact('Einpersonen-Haushalte (Anteil an allen Haushalten in %)', '%'),
   },
   {
-    'id': [37, 38],
+    'id': [76, 38],
     'text': [
       "How many households in Zurich have children?",
       "How many people in Zurich live with kids?", # HACK not the same question
