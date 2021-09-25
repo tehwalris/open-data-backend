@@ -11,6 +11,7 @@ let
     seaborn
     fastapi
     uvicorn
+    spacy
   ];
 in 
   mkShell {
