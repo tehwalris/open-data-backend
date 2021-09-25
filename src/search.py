@@ -66,8 +66,8 @@ def rough_vecs_from_sentence(s, embeddings_dict):
         if word in embeddings_dict
     ]
 
-bad_rank = 35
-terrible_rank = 1e6
+bad_rank = (35, 0)
+terrible_rank = (1e6, 0)
 
 def make_rank_question(query, embeddings_dict):
   query_word_vecs = rough_vecs_from_sentence(query, embeddings_dict)
@@ -83,7 +83,7 @@ def make_rank_question(query, embeddings_dict):
           )
           for query_word_vec in query_word_vecs
       ])
-      return np.mean(distances_per_query_word ** 2)
+      return (np.mean(distances_per_query_word ** 2), len(question_word_vecs))
   
   return rank_question
 
