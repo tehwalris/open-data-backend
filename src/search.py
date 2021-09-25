@@ -31,26 +31,38 @@ load_embeddings_dict = memoize(_load_embeddings_dict)
 def _load_question_vecs():
   embeddings_dict = load_embeddings_dict()
   return [
-      rough_vecs_from_scentence(q['text'], embeddings_dict)
+      rough_vecs_from_sentence(q['text'], embeddings_dict)
       for q in questions
   ]
 
 load_question_vecs = memoize(_load_question_vecs)
 
+def stem_word(w, embeddings_dict):
+  if w == 'does':
+    return w
+  stemmed = re.sub(r's$', '', w)
+  if embeddings_dict is None or stemmed in embeddings_dict:
+    return stemmed
+  return w
+
 stop_words = 'a the does did how much is in zurich use there what whats where'
-stop_words = set(stop_words.split(' '))
+stop_words = set(stem_word(w, None) for w in stop_words.split(' '))
 
-def rough_tokenize(s):
-    return [
-        w.lower()
+def rough_tokenize(s, embeddings_dict):
+    words = [
+        stem_word(w.lower(), embeddings_dict)
         for w in re.sub(r'[^a-zA-Z]', ' ', s.replace("'", '')).strip().split()
-        if w.lower() not in stop_words
     ]
+    return [
+      w
+      for w in words
+      if w not in stop_words
+    ] 
 
-def rough_vecs_from_scentence(s, embeddings_dict):
+def rough_vecs_from_sentence(s, embeddings_dict):
     return [
         embeddings_dict[word]
-        for word in rough_tokenize(s)
+        for word in rough_tokenize(s, embeddings_dict)
         if word in embeddings_dict
     ]
 
@@ -58,7 +70,7 @@ bad_rank = 35
 terrible_rank = 1e6
 
 def make_rank_question(query, embeddings_dict):
-  query_word_vecs = rough_vecs_from_scentence(query, embeddings_dict)
+  query_word_vecs = rough_vecs_from_sentence(query, embeddings_dict)
   
   def rank_question(question_word_vecs):
       if len(query_word_vecs) == 0 or len(question_word_vecs) == 0:
