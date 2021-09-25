@@ -8,6 +8,7 @@ from scipy import spatial
 
 from .path import get_path_from_root
 from .memoize import memoize
+from .questions import questions
 
 def create_embeddings_dict():
   embeddings_dict = {}
@@ -27,7 +28,16 @@ def _load_embeddings_dict():
     
 load_embeddings_dict = memoize(_load_embeddings_dict)
 
-stop_words = 'a the does did in zurich use how there'
+def _load_question_vecs():
+  embeddings_dict = load_embeddings_dict()
+  return [
+      rough_vecs_from_scentence(q['text'], embeddings_dict)
+      for q in questions
+  ]
+
+load_question_vecs = memoize(_load_question_vecs)
+
+stop_words = 'a the does did how much is in zurich use there'
 stop_words = set(stop_words.split(' '))
 
 def rough_tokenize(s):
@@ -44,6 +54,9 @@ def rough_vecs_from_scentence(s, embeddings_dict):
         if word in embeddings_dict
     ]
 
+bad_rank = 35
+terrible_rank = 1e6
+
 def make_rank_question(query, embeddings_dict):
   query_word_vecs = rough_vecs_from_scentence(query, embeddings_dict)
   
@@ -56,6 +69,21 @@ def make_rank_question(query, embeddings_dict):
           for query_word_vec in query_word_vecs
       ])
       rank = np.sum(distances_per_query_word ** 2)
-      return np.nan_to_num(rank, np.inf)
+      if rank == 0:
+        return terrible_rank
+      return np.nan_to_num(rank, terrible_rank)
   
   return rank_question
+
+def search_questions(query, question_vecs, embeddings_dict):
+  rank_question = make_rank_question(query, embeddings_dict)
+  temp = [
+      { 'text': q['text'], 'rank': rank_question(q_vec) }
+      for q, q_vec in zip(questions, question_vecs)
+  ]
+  temp.sort(key=lambda e: e['rank'])
+  return [
+    r 
+    for r in temp
+    if r['rank'] < bad_rank
+  ][:15]

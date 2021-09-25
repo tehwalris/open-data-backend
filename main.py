@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from src.questions import questions
+from src.search import load_embeddings_dict, load_question_vecs, search_questions
 
 app = FastAPI()
 origins = [
@@ -35,3 +36,9 @@ async def get_answer(req: GetAnswerRequest):
   if question is None:
     raise HTTPException(status_code=404, detail="question not found")
   return question['function']()
+
+@app.post("/search")
+async def get_search_results(query: str):
+  question_vecs = load_question_vecs()
+  embeddings_dict = load_embeddings_dict()
+  return search_questions(query, question_vecs, embeddings_dict)
