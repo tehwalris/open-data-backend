@@ -48,6 +48,16 @@ def power_over_a_day():
 def power_over_a_week():
   df = load_data()
   df = df.groupby(lambda x: x.weekday()).mean()
+  df = df.sort_index().iloc[::-1]
+  df = df.rename(index={
+    0: 'Monday',
+    1: 'Tuesday',
+    2: 'Wednesday',
+    3: 'Thursday',
+    4: 'Friday',
+    5: 'Saturday',
+    6: 'Sunday',
+  })
   df = df.reset_index()
   df = df.rename(columns={ 'index': 'x', "energy": 'y' })
   return response_from_df(df)
