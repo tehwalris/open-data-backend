@@ -2,7 +2,8 @@
 
 mkdir -p data/air_quality
 for year in {1983..2021}; do
-  wget "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte/download/ugz_ogd_air_h1_${year}.csv" -O "data/air_quality/${year}.csv"
+  echo "data/air_quality/${year}.csv"
+  wget -q "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte/download/ugz_ogd_air_h1_${year}.csv" -O "data/air_quality/${year}.csv"
 done
 
 mkdir -p data/random_facts
