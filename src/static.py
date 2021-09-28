@@ -17,6 +17,7 @@ args = parser.parse_args()
 out_folder = get_path_from_root('static')
 shutil.rmtree(str(out_folder), ignore_errors=True)
 out_folder.mkdir()
+(out_folder / "answer").mkdir()
 
 def get_url(relative_path):
   return urllib.parse.urljoin(args.server, relative_path)
@@ -25,6 +26,7 @@ def get_and_save(path: str):
   assert not path.startswith('/')
   assert not path.startswith('.')
 
+  print('saving', path)
   r = requests.get(get_url('/' + path))
   r.raise_for_status()
   (out_folder / path).write_bytes(r.content)
@@ -32,4 +34,4 @@ def get_and_save(path: str):
 get_and_save('questions')
 
 for q in questions:
-  post_and_save('/answer/' + q.id)
+  get_and_save(f"answer/{q['id']}")
