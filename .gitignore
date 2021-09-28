@@ -1,4 +1,5 @@
 /lib
+/static
 .vscode
 
 # https://raw.githubusercontent.com/github/gitignore/d0b1f7fef90caba0a22bb0a82d2f0abcc2cbc302/Python.gitignore
