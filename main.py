@@ -24,14 +24,11 @@ app.add_middleware(
 async def get_questions():
   return questions
 
-class GetAnswerRequest(BaseModel):
-  id: int
-
-@app.post("/answer")
-async def get_answer(req: GetAnswerRequest):
+@app.get("/answer/{id}")
+async def get_answer(id: int):
   question = None
   for q in questions:
-    if q['id'] == req.id:
+    if q['id'] == id:
       question = q
   if question is None:
     raise HTTPException(status_code=404, detail="question not found")

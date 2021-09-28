@@ -21,6 +21,15 @@ out_folder.mkdir()
 def get_url(relative_path):
   return urllib.parse.urljoin(args.server, relative_path)
 
-r = requests.get(get_url('/questions'))
-r.raise_for_status()
-(out_folder / 'questions').write_bytes(r.content)
+def get_and_save(path: str):
+  assert not path.startswith('/')
+  assert not path.startswith('.')
+
+  r = requests.get(get_url('/' + path))
+  r.raise_for_status()
+  (out_folder / path).write_bytes(r.content)
+
+get_and_save('questions')
+
+for q in questions:
+  post_and_save('/answer/' + q.id)
