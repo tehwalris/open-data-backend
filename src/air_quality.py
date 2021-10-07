@@ -8,6 +8,11 @@ from .memoize import memoize
 from .path import get_path_from_root
 from .smooth import smooth
 
+source = {
+    "src_url": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+    "src_label": "Gesundheits- und Umweltdepartement, Stadt Zürich",
+}
+
 
 def get_all_air_quality_csv_paths():
     # TODO
@@ -18,7 +23,10 @@ def load_single_air_quality_csv(path):
     df = pd.read_csv(
         path,
         parse_dates=["Datum"],
-        dtype={"Standort": "category", "Parameter": "category",},
+        dtype={
+            "Standort": "category",
+            "Parameter": "category",
+        },
     )
     df = df[(df["Status"] == "bereinigt") | (df["Status"] == "provisorisch")]
     df = df.drop(columns=["Intervall", "Status"])

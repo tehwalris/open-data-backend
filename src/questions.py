@@ -13,7 +13,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "CO in [mg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -25,7 +25,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Nitrogen Monoxide in [µg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -37,7 +37,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Nitrogen Dioxide in [µg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -52,7 +52,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Particulate Matter in [Unit] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -64,7 +64,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "PM2.5 in [µg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -76,7 +76,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Sulphur Dioxide in [µg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -88,7 +88,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Ozone in [µg/m3] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -103,7 +103,7 @@ questions = [
             "chart_type": "line",
             "x_axis_time": True,
             "graph_label": "Air pollution [normalized] over time",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -118,7 +118,7 @@ questions = [
             "chart_type": "table",
             "x_axis_time": True,
             "graph_label": "Current air pollution in Zurich",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -130,7 +130,7 @@ questions = [
             "chart_type": "multi-line",
             "x_axis_time": True,
             "graph_label": "Air pollution [normalized] over the course of a year",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
@@ -142,17 +142,20 @@ questions = [
             "chart_type": "multi-line",
             "x_axis_hours": True,
             "graph_label": "Air pollution [normalized] over the course of a day",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ugz_luftschadstoffmessung_stundenwerte",
+            **air_quality.source,
         },
     },
     {
         "id": [18, 19],
-        "text": ["How big are the districts of Zurich?", "What's the area of Zurich?",],
+        "text": [
+            "How big are the districts of Zurich?",
+            "What's the area of Zurich?",
+        ],
         "function": random_facts.make_answer_fact("Fläche in Quadratkilometer", "km²"),
         "frontend_settings": {
             "id": 18,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -165,7 +168,7 @@ questions = [
         "frontend_settings": {
             "id": 20,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -177,7 +180,7 @@ questions = [
         "frontend_settings": {
             "id": 22,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -187,7 +190,7 @@ questions = [
         "frontend_settings": {
             "id": 23,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -197,7 +200,7 @@ questions = [
         "frontend_settings": {
             "id": 24,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -207,7 +210,7 @@ questions = [
         "frontend_settings": {
             "id": 25,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -217,7 +220,7 @@ questions = [
         "frontend_settings": {
             "id": 26,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -232,7 +235,7 @@ questions = [
         "frontend_settings": {
             "id": 27,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -242,7 +245,7 @@ questions = [
         "frontend_settings": {
             "id": 29,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -252,7 +255,7 @@ questions = [
         "frontend_settings": {
             "id": 30,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -264,7 +267,7 @@ questions = [
         "frontend_settings": {
             "id": 31,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -276,7 +279,7 @@ questions = [
         "frontend_settings": {
             "id": 32,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -286,7 +289,7 @@ questions = [
         "frontend_settings": {
             "id": 33,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     # TODO: "Häufigste ausländische Nationalität (Anzahl Personen)"
@@ -297,7 +300,7 @@ questions = [
         "frontend_settings": {
             "id": 34,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -307,7 +310,7 @@ questions = [
         "frontend_settings": {
             "id": 35,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     # TODO: Oldest person ignoring gender
@@ -323,7 +326,7 @@ questions = [
         "frontend_settings": {
             "id": 36,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -338,7 +341,7 @@ questions = [
         "frontend_settings": {
             "id": 38,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -348,7 +351,7 @@ questions = [
         "frontend_settings": {
             "id": 39,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -360,7 +363,7 @@ questions = [
         "frontend_settings": {
             "id": 40,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -372,7 +375,7 @@ questions = [
         "frontend_settings": {
             "id": 41,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -387,7 +390,7 @@ questions = [
         "frontend_settings": {
             "id": 42,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -399,7 +402,7 @@ questions = [
         "frontend_settings": {
             "id": 44,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -414,7 +417,7 @@ questions = [
         "frontend_settings": {
             "id": 45,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -430,7 +433,7 @@ questions = [
         "frontend_settings": {
             "id": 15,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -443,7 +446,7 @@ questions = [
         "frontend_settings": {
             "id": 47,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -455,7 +458,7 @@ questions = [
         "frontend_settings": {
             "id": 49,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -465,7 +468,7 @@ questions = [
         "frontend_settings": {
             "id": 50,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     # TODO Beschäftigte im 1. Sektor, ...
@@ -476,7 +479,7 @@ questions = [
         "frontend_settings": {
             "id": 51,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -486,7 +489,7 @@ questions = [
         "frontend_settings": {
             "id": 52,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -498,7 +501,7 @@ questions = [
         "frontend_settings": {
             "id": 53,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -508,7 +511,7 @@ questions = [
         "frontend_settings": {
             "id": 54,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -518,7 +521,7 @@ questions = [
         "frontend_settings": {
             "id": 55,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     {
@@ -528,7 +531,7 @@ questions = [
         "frontend_settings": {
             "id": 56,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     # TODO Autos pro hundert Personen (18 Jährige und Ältere)
@@ -541,7 +544,7 @@ questions = [
         "frontend_settings": {
             "id": 57,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+            **random_facts.source,
         },
     },
     # Energy data
@@ -558,7 +561,7 @@ questions = [
             "x_axis_time": True,
             "graph_label": "Power [kW] consumption (weekly average)",
             "domain_padding": {"y": 25},
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ewz_bruttolastgang_stadt_zuerich",
+            **energy.source,
         },
     },
     {
@@ -570,7 +573,7 @@ questions = [
             "chart_type": "line",
             "graph_label": "Average power [kW] consumption by hour of day",
             "x_axis_hours": True,
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ewz_bruttolastgang_stadt_zuerich",
+            **energy.source,
         },
     },
     {
@@ -581,7 +584,7 @@ questions = [
             "id": 61,
             "chart_type": "bar",
             "graph_label": "Average power [kW] consumption by weekday",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/ewz_bruttolastgang_stadt_zuerich",
+            **energy.source,
         },
     },
     {
@@ -592,7 +595,7 @@ questions = [
             "id": 62,
             "chart_type": "line",
             "graph_label": "Average power [kW] consumption per day of year",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -606,7 +609,7 @@ questions = [
         "frontend_settings": {
             "id": 65,
             "chart_type": "pie",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -620,7 +623,7 @@ questions = [
         "frontend_settings": {
             "id": 68,
             "chart_type": "pie",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -631,7 +634,7 @@ questions = [
             "id": 69,
             "chart_type": "bar",
             "hide_x_axis": True,
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -641,7 +644,7 @@ questions = [
         "frontend_settings": {
             "id": 70,
             "chart_type": "map",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -656,7 +659,7 @@ questions = [
             "chart_type": "bar",
             "hide_x_axis": True,
             "graph_label": "Number of owners per age group",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -666,7 +669,7 @@ questions = [
         "frontend_settings": {
             "id": 73,
             "chart_type": "number",
-            "src_label": "https://data.stadt-zuerich.ch/dataset/sid_stapo_hundebestand",
+            **dogs.source,
         },
     },
     {
@@ -678,12 +681,10 @@ questions = [
             "chart_type": "bar",
             "graph_label": "Number of dogs born per year",
             "hide_x_axis": True,
-            "src_label": "",
+            **dogs.source,
         },
     },
 ]
-
-# print([question["id"][0] if isinstance(question["id"],list) else question["id"] for question in questions])
 
 _questions = questions
 questions = []

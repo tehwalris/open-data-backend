@@ -6,4 +6,7 @@ def json_from_df(df):
 
 
 def response_from_df(df):
-    return Response(content=json_from_df(df), media_type="application/json",)
+    return Response(
+        content=json_from_df(df),
+        media_type="application/json",
+    )

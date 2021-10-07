@@ -7,14 +7,26 @@ from .memoize import memoize
 from .response import response_from_df
 from .smooth import smooth
 
+source = {
+    "src_url": "https://data.stadt-zuerich.ch/dataset/ewz_bruttolastgang_stadt_zuerich",
+    "src_label": "Elektrizitätswerk der Stadt Zürich",
+}
+
 
 def _load_data():
     df = pd.read_csv(
         get_path_from_root("data/energy/data.csv"),
         parse_dates=["zeitpunkt"],
-        dtype={"status": "category",},
+        dtype={
+            "status": "category",
+        },
     )
-    df = df.rename(columns={"zeitpunkt": "date", "bruttolastgang": "energy",})
+    df = df.rename(
+        columns={
+            "zeitpunkt": "date",
+            "bruttolastgang": "energy",
+        }
+    )
     df = df[(df["status"] == "E") | ((df["status"] == "F") & (df["energy"] >= 1000))]
     df = df.drop(columns=["status"])
     df = df.set_index("date")

@@ -12,6 +12,7 @@ let
     seaborn
     fastapi
     uvicorn
+    black
   ];
 in 
   mkShell {

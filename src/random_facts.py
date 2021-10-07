@@ -6,10 +6,17 @@ from .path import get_path_from_root
 from .memoize import memoize
 from .response import json_from_df
 
+source = {
+    "src_url": "https://data.stadt-zuerich.ch/dataset/prd_ssz_gang-dur-zueri_od1005",
+    "src_label": "Schul- und Sportdepartement, Stadt Zürich",
+}
+
 
 def _load_data():
     df = pd.read_csv(
-        get_path_from_root("data/random_facts/data.csv"), parse_dates=[], dtype={},
+        get_path_from_root("data/random_facts/data.csv"),
+        parse_dates=[],
+        dtype={},
     )
     df = df.rename(
         columns={
