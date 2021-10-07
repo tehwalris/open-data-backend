@@ -85,7 +85,7 @@ def answer_over_year():
   df = df.reset_index()
   df = df.groupby(['day_of_year', 'pollutant']).mean()['value'].unstack('pollutant')
   df.columns = df.columns.astype('string')
-  df = df[['CO', 'NO', 'O3']]
+  df = df[['PM10', 'CO', 'O3']]
   df = df.sort_index()
   df = df / df.max(axis=0)
   df = df.reset_index()
@@ -96,7 +96,7 @@ def answer_over_day():
   df = df.reset_index()
   df = df.groupby(['hour', 'pollutant']).mean()['value'].unstack('pollutant')
   df.columns = df.columns.astype('string')
-  df = df[['CO', 'NO', 'O3']]
+  df = df[['PM10', 'CO', 'O3']]
   df = df.sort_index()
   df = df / df.max(axis=0)
   df = df.reset_index()
